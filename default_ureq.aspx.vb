@@ -2,7 +2,7 @@
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        'If Not Page.IsPostBack Then mainform.Style.Add("display", "none")
     End Sub
 
     Private Sub gvReqData_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvReqData.SelectedIndexChanged
@@ -169,10 +169,17 @@
     End Sub
 
     Protected Sub btnShowGrid_Click(sender As Object, e As EventArgs)
-        If mainform.Style("display") = "none" Then
-            mainform.Style.Add("display", "block")
+        If gvReqData.Style("display") Is Nothing Then
+            'gvReqData.Style.Add("display", "block")
+            Response.Write("1")
         Else
-            mainform.Style.Add("display", "none")
+            If gvReqData.Style("display") = "none" Then
+                'gvReqData.Style.Add("display", "block")
+                Response.Write("2")
+            Else
+                'gvReqData.Style.Add("display", "none")
+                Response.Write("3")
+            End If
         End If
     End Sub
 End Class

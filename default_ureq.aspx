@@ -9,16 +9,16 @@
 <body>
     <form id="form1" runat="server">
 
-    <div id="mainform" runat="server" style="display:none">
+    <div id="mainform" runat="server" style="display:block">
 
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-        <asp:UpdatePanel ID="upGridView" runat="server" UpdateMode="Conditional">
+<!--        <asp:UpdatePanel ID="upGridView" runat="server" UpdateMode="Conditional">
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnShowGrid" EventName="Click" />
             </Triggers>
             <ContentTemplate>
-                
+-->                
                 <div id="main_data" runat="server" style="display:block">
                     <asp:SqlDataSource ID="sqlReqData" runat="server" ConnectionString="<%$ ConnectionStrings:ProductionConnectionString %>" 
                                        SelectCommand="SELECT [URID],[FY],[DATERECV],[DATEDONE],[INITIATOR],[ORGDESC],[OBJCODE],[REQUEST],[ACNTNO],[AMT],[AMTTYPE],[VENDOR],
@@ -158,7 +158,7 @@
                             </div>
 
                             <div style="overflow-x:auto;width:96%;overflow-y:auto;min-height:100px;max-height:250px">
-                            <asp:GridView ID="gvReqData" runat="server" AllowSorting="True" DataSourceID="sqlReqData" AutoGenerateColumns="False" ShowHeader="False">
+                            <asp:GridView ID="gvReqData" runat="server" AllowSorting="True" DataSourceID="" AutoGenerateColumns="False" ShowHeader="False">
                                 <RowStyle Font-Size="Smaller" />
                                 <AlternatingRowStyle BackColor="lightgray" />
                                 <HeaderStyle Font-Size="Small" Font-Bold="True" BackColor="DarkSlateBlue" ForeColor="White" />
@@ -202,8 +202,10 @@
                 <asp:HiddenField ID="hfVendor" runat="server" Value="" />
                 <asp:HiddenField ID="hfComments" runat="server" Value="" />
 
-            </ContentTemplate>
+<!--            </ContentTemplate>
         </asp:UpdatePanel>
+-->
+
     </div>
     <hr style="width:96%; text-align:left; color=black"/>
 
@@ -217,7 +219,7 @@
                 <asp:Button ID="btnUseList" runat="server" Text="..." ToolTip="Click to switch between text and list to specify ID" Width="25px" OnClick="btnUseList_Click"/>
                 <asp:ImageButton ID="ibtnNext" runat="server" Height="25px" ImageAlign="Top" ImageUrl="~/images/next.png" BorderStyle="Solid" BorderWidth="2px" />
                 <asp:ImageButton ID="ibtnLast" runat="server" Height="25px" ImageAlign="Top" ImageUrl="~/images/last.png" Width="25px" BorderStyle="Solid" BorderWidth="2px" />
-                <asp:Button ID="btnShowGrid" runat="server" Text="Show/Hide Grid" OnClick="btnShowGrid_Click" Autopostback="true" />
+                <asp:Button ID="btnShowGrid" runat="server" Text="Show/Hide Grid" Auto AutoPostBack="true" OnClick="btnShowGrid_Click" />
             </td>
             <td colspan="2" width="10%">&nbsp;</td>
             <td colspan="10" width="50%">&nbsp;</td>
@@ -227,14 +229,15 @@
     <hr style="width:96%; text-align:left; color:black"/>
 
     <div id="dataentry" runat="server" style="display:block;width:96%;text-align:center">
-        <asp:UpdatePanel ID="updDataEntry" runat="server" UpdateMode="Conditional">
+<!--        <asp:UpdatePanel ID="updDataEntry" runat="server" UpdateMode="Conditional">
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="ddlReqIDs" EventName="SelectedIndexChanged" />
                 <asp:AsyncPostBackTrigger ControlID="txtReqID" EventName="TextChanged" />
                 <asp:AsyncPostBackTrigger ControlID="gvReqData" EventName="SelectedIndexChanged" />
             </Triggers>
            <ContentTemplate>
-        <table style="border-style:solid;border-color:black;border-width:1px;background-color:white">
+ -->
+          <table style="border-style:solid;border-color:black;border-width:1px;background-color:white">
             <tr><td colspan="13" width="100%">&nbsp;</td></tr>
             <tr>
                 <td width="10%" style="text-align:right">UR ID#</td>
@@ -302,6 +305,7 @@
                     <asp:DropDownList ID="ddlVendors" runat="server" style="min-width:60%" DataSourceID="sqlVendors" DataTextField="VENDORS" DataValueField="VENDORS"></asp:DropDownList>
                 </td>
                 <td width="15%">&nbsp;</td>
+            </tr>
             <tr height="2em" ><td colspan="13" width="100%">&nbsp;</tr>
             <tr>
                 <td width="10%" style="text-align:right">Description</td>
@@ -312,8 +316,9 @@
             </tr>
             <tr height="2em" ><td colspan="13" width="100%">&nbsp;</td></tr>
         </table>
-            </ContentTemplate>
+<!--            </ContentTemplate>
         </asp:UpdatePanel>
+-->
     </div>
     </form>
 </body>
